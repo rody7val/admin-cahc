@@ -1,0 +1,97 @@
+<!-- Navegación, fecha y hora-->
+<div id='subnav'>
+	<ol class='breadcrumb'>
+		<div class='container'>
+			<li class='breadcrumb-item'>Home</li>
+			<div id='time' class='right date'></div>
+		</div>
+	</ol>
+</div>
+<script src="/js/time.js" type="text/javascript"></script>
+
+<!-- Plantilla -->
+<section id='template-content' class='{{loading ? "load" : ""}}'>
+
+	<!-- Imagen de carga -->
+	<section id='img-load-content' class='{{loading ? "view" : ""}}'>
+		<img id='img-load' src='img/img-load.gif' alt='img-load.gif'>
+	</section>
+	
+	<!-- Titulo -->
+	<div class='head-title'>
+		<h1 class='center light'>Administración</h1>
+	</div>
+
+	<div class='container body-form'>
+		<nav>
+
+			<!-- Navegación de administración -->
+			<ul class='nav nav-tabs'>
+				<li class='nav-item'>
+					<a 
+						class='nav-link active'
+						data-toggle='tab'
+						ng-click='currentPage = 1'
+						href='#notice'>Noticias</a>
+				</li>
+				<li class='nav-item'>
+					<a 
+						class='nav-link'
+						data-toggle='tab'
+						ng-click='currentPage = 2'
+						href='#user'>Usuarios</a>
+				</li>
+			</ul>
+			<br>
+
+			<!-- Paneles-->
+			<div class='tab-content'>
+				<!-- Noticias -->
+				<div class='tab-pane {{currentPage == 1 ? "active" : ""}}' id='notice'>
+					<div class='list-group'>
+						<a 
+							href="/notice"
+							class="list-group-item list-group-item-action flex-column align-items-start">
+							<div class="d-flex w-100 justify-content-between">
+								<h5 class='mb-1'>Crear Noticia</h5>
+							</div>
+							<p class='mb-1'>Muestra un formlario para crear una nueva Noticia y almacenarla en la Base de Datos.</p>
+						</a>
+						<a 
+							href="/notices"
+							class="list-group-item list-group-item-action flex-column align-items-start">
+							<div class="d-flex w-100 justify-content-between">
+								<h5 class='mb-1'>Listado de Noticias</h5>
+							</div>
+							<p class='mb-1'>Muestra un listado de todas las Noticias guardadas. Tambien es posible editarlas y borrarlas.</p>
+						</a>
+					</div>
+				</div>
+				<!-- Usuarios -->
+				<div class='tab-pane {{currentPage == 2 ? "active" : ""}}' id='user'>
+					<div class='list-group'>
+						<a 
+							href="/user"
+							class="list-group-item list-group-item-action flex-column align-items-start disabled">
+							<div class="d-flex w-100 justify-content-between">
+								<h5 class='mb-1'>Crear Usuario</h5>
+							</div>
+							<p class='mb-1'>Muestra un formulario para crear un nuevo Usuario y almacenarlo en la Base de Datos.</p>
+						</a>
+						<a 
+							href="/users"
+							class="list-group-item list-group-item-action flex-column align-items-start disabled">
+							<div class="d-flex w-100 justify-content-between">
+								<h5 class='mb-1'>Listado de Usuarios</h5>
+							</div>
+							<p class='mb-1'>Muestra un listado de todos los Usuarios guardados. Tambien es posible editarlos y borrarlos.</p>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		</nav>
+
+	</div>
+
+</section>

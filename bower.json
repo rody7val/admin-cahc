@@ -1,0 +1,27 @@
+{
+  "name": "admin-cahc",
+  "description": "Administración - Club Atletico Huracan Chillar",
+  "main": "./bin/www",
+  "authors": [
+    "Rodolfo Valguarnera <rod7val@gmail.com> (https://github.com/rody7val/)"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-router-menus": "^0.2.1",
+    "moment": "^2.17.1",
+    "angular-ui-router": "0.3.2",
+    "angular": "1.5.0",
+    "bootstrap": "4.0.0-alpha.5",
+    "jquery": "3.1.1",
+    "satellizer": "^0.15.5"
+  }
+}

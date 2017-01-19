@@ -1,0 +1,75 @@
+<!-- Navegación, fecha y hora-->
+<div id='subnav'>
+	<ol class='breadcrumb'>
+		<div class='container'>
+			<li class='breadcrumb-item'>
+				<a class='breadcrumb-link' href="/">Home</a>
+			</li>
+			<li class='breadcrumb-item active'>Iniciar Sesión</li>
+			<div id='time' class='right date'></div>
+		</div>
+	</ol>
+</div>
+<script src="/js/time.js" type="text/javascript"></script>
+
+<!-- Plantilla -->
+<section id='template-content' class='{{loading ? "load" : ""}}'>
+
+	<!-- Imagen de carga -->
+	<section id='img-load-content' class='{{loading ? "view" : ""}}'>
+		<img id='img-load' src='img/img-load.gif' alt='img-load.gif'>
+	</section>
+	
+	<!-- Titulo -->
+	<div class='head-title'>
+		<h1 class='center light'>Iniciar sesión</h1>
+	</div>
+	
+	<!-- Formulario -->
+	<div class='container body-form auth-form'>
+		<form ng-submit="login.login()" method="post">
+				
+				<!-- Errors -->
+				<div ng-show='feedback_err' class='alert alert-danger'>
+					{{feedback_err}}
+				</div>
+
+				<!-- Email -->
+				<div class='form-group {{feedback_email ? "has-danger" : ""}}'>
+					<label 
+						class='form-control-label'
+						for='email'>
+							<b>Email</b></label>
+		    	<input
+		    		id='email'
+		    		type="email"
+		    		ng-model="login.email"
+		    		class='form-control' />
+		    	<div 
+		    		id="email-feedback"
+		    		class='form-control-feedback'>{{feedback_email}}</div>
+				</div>
+	
+				<!-- Contraseña -->
+				<div class='form-group {{feedback_password ? "has-danger" : ""}}'>
+		    	<label 
+		    		class='form-control-label'
+		    		for='password'>
+		    			<b>Contraseña</b></label>
+		    	<input
+		    		id='password'
+		    		type="password"
+		    		ng-model="login.password"
+		    		class='form-control' />
+		    	<div 
+		    		id="password-feedback"
+		    		class='form-control-feedback'>{{feedback_password}}</div>
+				</div>
+	
+				<!-- Boton de acceso -->
+		    <button type="submit" class='btn btn-outline-primary {{loading ? "disabled" : ""}}'>Autenticarse</button>
+	
+		</form>
+	</div>
+
+</section>
