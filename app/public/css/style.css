@@ -1,13 +1,6 @@
-/**/
-/*@font-face {
-    font-family: "Condensed";
-  	font-weight: 300;
-    src: url("Condensed.woff2");
-}*/
 section#main{
 	background-color: #f7f7f7;
-	margin-top: 106px;
-	min-height: 100px;
+	margin-top: 89px;
 	z-index: 0;
 }
 section#template-content{
@@ -23,7 +16,7 @@ section#img-load-content{
 	font-weight: 300;
 	font-size: 18px!important;
 }
-.date:first-letter{
+.breadcrumb .date:first-letter{
 	text-transform: capitalize;
 }
 img#img-load{
@@ -39,13 +32,21 @@ header.navbar{
     z-index: 1
 }
 .navbar-brand img{
-	width: 80px
+	width: 42px
 }
 .navbar-nav .nav-link{
-	padding-top: 30px;
-	padding-bottom: 30px;
+	padding-top: 21px;
+	padding-bottom: 21px;
 	font-size: 20px;
 	font-weight: 300;
+}
+footer.footer{
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+footer.footer p{
+    padding: 0px;
+    margin: 0px;
 }
 
 /**/
@@ -69,8 +70,40 @@ label {
     display: inline-block;
     margin-bottom: .5rem;
 }
+/*.body-form label{
+	display: block;
+}*/
 td form {
 	display: inline-block;
+}
+.progress {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: hidden;
+    font-size: .75rem;
+    line-height: 1rem;
+    text-align: center;
+    background-color: #eceeef;
+    border-radius: .25rem;
+}
+.progress-bar {
+    height: 1rem;
+    color: #fff;
+    background-color: #0275d8;
+}
+.progress-bar-striped {
+    background-image: -webkit-linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+    background-image: -o-linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+    background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+    -webkit-background-size: 1rem 1rem;
+     background-size: 1rem 1rem; 
+}
+.progress-bar-animated {
+    -webkit-animation: progress-bar-stripes 1s linear infinite;
+    -o-animation: progress-bar-stripes 1s linear infinite;
+    animation: progress-bar-stripes 1s linear infinite;
 }
 /**/
 .center{

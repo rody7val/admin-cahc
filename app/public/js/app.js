@@ -1,5 +1,5 @@
 angular
-  .module('app-cahc', ['satellizer', 'ui.router'])
+  .module('app-cahc', ['satellizer', 'ui.router', 'imgurUpload'])
   .config(function ($authProvider, $stateProvider, $locationProvider) {
 
     $authProvider.loginUrl = "https://api-cahc.herokuapp.com/auth/login"
@@ -188,7 +188,7 @@ function LogoutController($scope, $auth, $location) {
     })
 }
 
-function NoticeController($scope, $auth, $location, $http) {  
+function NoticeController($scope, $auth, $location, $http, $timeout, imgurUpload) {  
   if (!$auth.isAuthenticated())
     return $location.path("/login")
 
@@ -200,6 +200,44 @@ function NoticeController($scope, $auth, $location, $http) {
   $scope.feedback_err = ''
   $scope.feedback_category = ''
 
+  $scope.url_img = '';
+  $scope.img_err = "Error de servicio! Contácte al administrdor del sistema."
+
+  $scope.uploadProgress = 0;
+  $scope.upload = function(element) {
+    var success = function(result) {
+      $scope.loading = false
+      $scope.sending = false;
+      $scope.result = result;
+      vm.url_img = result.data.link || ''
+    };
+
+    var error = function(err) {
+      $scope.loading = false
+      $scope.error = err;
+    };
+
+    var notify = function(progress) {
+      $scope.loading = false
+      $timeout(function() {
+        $scope.progress = progress;
+      });
+    };
+
+    $scope.loading = true
+    $scope.sending = true;
+    $scope.error = false;
+
+    var image = element.files[0];
+    var clientId = "b14fcab1bde9b6c";
+    imgurUpload
+      .setClientId(clientId);
+    imgurUpload
+      .upload(image)
+      .then(success, error, notify)
+      .catch(error);
+  };
+
   this.create = function(){
     $scope.loading = true
 
@@ -209,6 +247,7 @@ function NoticeController($scope, $auth, $location, $http) {
         content_1: vm.content_1 || '',
         content_2: vm.content_2 || '',
         category: vm.category || '',
+        url_img: vm.url_img || '',
         status: vm.status || false
       }
     })
@@ -219,6 +258,12 @@ function NoticeController($scope, $auth, $location, $http) {
       $scope.feedback_content_2 = ''
       $scope.feedback_err = ''
       $scope.feedback_category = ''
+      
+      $scope.result = false;
+      $scope.sending = false;
+      $scope.error = false;
+      $scope.progress = false;
+      $scope.url_img = '';
       var api = res.data
 
       if (res.status === 200) {
@@ -227,12 +272,15 @@ function NoticeController($scope, $auth, $location, $http) {
         vm.content_2 = ''
         vm.category = ''
         vm.status = ''
+        vm.url_img = ''
         alert('Noticia creada con exito!')
       }
     })
     .catch(function(res){
-      if (!res.data)
+      if (!res.data){
+        $scope.loading = false
         return $scope.feedback_err = "Error de servicio! Contácte al administrdor del sistema."
+      }
 
       var api = res.data
       $scope.loading = false

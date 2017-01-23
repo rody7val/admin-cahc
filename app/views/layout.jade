@@ -19,7 +19,7 @@ html(lang='es', ng-app='app-cahc')
 		header.navbar.navbar-fixed-top(ng-controller='IsAuthenticated')
 			nav.container
 				a.navbar-brand(href='/', title='Home')
-					img(src='/img/logo.png' alt='logo.png')
+					img(src='/img/logo-club.png' alt='logo.png')
 				ul.nav.navbar-nav.right(ng-if='!isAuthenticated()')
 					li.nav-item
 						a.nav-link(href='/login', title='Entrar') Entrar
@@ -33,10 +33,11 @@ html(lang='es', ng-app='app-cahc')
 			block content
 		//- Pie de página
 		footer.footer
-			br
-			br
-			p.center.date Club Atlético Huracán Chillar
-			br
-			br
+			.container
+				p.center.date Club Atlético Huracán Chillar
+				p.center.date 
+					small Sistema de Administración Web
+				p.center.date
+					small  © 2017 - v1.1.0
 		//- Scripts
 		block js_footer
