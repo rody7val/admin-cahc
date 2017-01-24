@@ -1,6 +1,6 @@
 {
   "name": "admin-cahc",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Administración - Club Atletico Huracan Chillar",
   "scripts": {
     "start": "node ./bin/www"

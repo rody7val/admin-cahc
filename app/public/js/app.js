@@ -17,52 +17,100 @@ angular
       .state("home", {
         url: "/",
         templateUrl: "templates/index.html",
-        controller: "HomeController"
+        controller: "Home"
       })
+      //session
       .state("login", {
         url: "/login",
-        templateUrl: "templates/login.html",
-        controller: "LoginController",
+        templateUrl: "templates/session/login.html",
+        controller: "Login",
         controllerAs: "login"
       })
       .state("signup", {
         url: "/signup",
-        templateUrl: "templates/signup.html",
-        controller: "SignUpController",
+        templateUrl: "templates/session/signup.html",
+        controller: "Signup",
         controllerAs: "signup"
       })
       .state("logout", {
         url: "/logout",
         templateUrl: null,
-        controller: "LogoutController"
+        controller: "Logout"
       })
+      //notice
       .state("notice", {
         url: "/notice",
-        templateUrl: "templates/notice.html",
-        controller: "NoticeController",
+        templateUrl: "templates/notice/new.html",
+        controller: "NoticeNew",
         controllerAs: "notice"
       })
       .state("notices", {
         url: "/notices",
-        templateUrl: "templates/notice_list.html",
-        controller: "NoticesController",
+        templateUrl: "templates/notice/list.html",
+        controller: "NoticeList",
         controllerAs: "notices"
       })
+      .state("notice_show", {
+        url: "/notice/:id",
+        templateUrl: "templates/notice/show.html",
+        controller: "NoticeShow",
+        controllerAs: "notice"
+      })
+      //default
       .state("otherwise", {
         url: "/*path",
         templateUrl: "templates/404.html"
       })
   })
-  .controller("HomeController", HomeController)
+  .controller("Home", Home)
   .controller("IsAuthenticated", IsAuthenticated)
-  .controller("SignUpController", SignUpController)
-  .controller("LoginController", LoginController)
-  .controller("LogoutController", LogoutController)
-  .controller("NoticeController", NoticeController)
-  .controller("NoticesController", NoticesController)
+  .controller("Signup", Signup)
+  .controller("Login", Login)
+  .controller("Logout", Logout)
+  .controller("NoticeNew", NoticeNew)
+  .controller("NoticeList", NoticeList)
+  .controller("NoticeShow", NoticeShow)
 
+function NoticeShow($scope, $auth, $http, $location, $stateParams){
+  if (!$auth.isAuthenticated())
+    return $location.path("/login")
 
-function HomeController($scope, $auth, $location) {
+  $scope.id = $stateParams.id
+  $scope.loading = false
+  $scope.feedback_err = ''
+
+  this.getOne = function() {
+    $scope.loading = true
+
+    $http.get('https://api-cahc.herokuapp.com/notices/' + $scope.id)
+    .then(function(res){
+      $scope.loading = false
+      $scope.feedback_err = ''
+      var api = res.data
+
+      if (res.status === 200)
+        $scope.notice = api.notice
+    })
+    .catch(function(res){
+      if (!res.data)
+        $scope.feedback_err = "Error de servicio! Contácte al administrdor del sistema."
+
+      var api = res.data
+      if (res.status === 500 && api.err)
+        $scope.feedback_err = api.err
+
+      $scope.loading = false
+    })
+  }
+
+  $scope.setDate = function(date) {
+    return moment(date).locale('es').calendar()
+  }
+
+  this.getOne()
+}
+
+function Home($scope, $auth, $location) {
   if (!$auth.isAuthenticated())
     return $location.path("/login")
   $scope.currentPage = 1;
@@ -74,7 +122,7 @@ function IsAuthenticated($scope, $auth, $location){
   }
 }
 
-function SignUpController($scope, $auth, $location) {
+function Signup($scope, $auth, $location) {
   if ($auth.isAuthenticated())
     return $location.path("/")
 
@@ -127,7 +175,7 @@ function SignUpController($scope, $auth, $location) {
   }
 }
 
-function LoginController($scope, $auth, $location) {
+function Login($scope, $auth, $location) {
   if ($auth.isAuthenticated())
     return $location.path("/")
 
@@ -178,7 +226,7 @@ function LoginController($scope, $auth, $location) {
   }
 }
 
-function LogoutController($scope, $auth, $location) {
+function Logout($scope, $auth, $location) {
   if (!$auth.isAuthenticated())
     return $location.path("/login")
 
@@ -188,7 +236,7 @@ function LogoutController($scope, $auth, $location) {
     })
 }
 
-function NoticeController($scope, $auth, $location, $http, $timeout, imgurUpload) {  
+function NoticeNew($scope, $auth, $location, $http, $timeout, imgurUpload) {  
   if (!$auth.isAuthenticated())
     return $location.path("/login")
 
@@ -278,6 +326,7 @@ function NoticeController($scope, $auth, $location, $http, $timeout, imgurUpload
     })
     .catch(function(res){
       if (!res.data){
+
         $scope.loading = false
         return $scope.feedback_err = "Error de servicio! Contácte al administrdor del sistema."
       }
@@ -304,7 +353,7 @@ function NoticeController($scope, $auth, $location, $http, $timeout, imgurUpload
   }
 }
 
-function NoticesController($scope, $auth, $location, $http) {  
+function NoticeList($scope, $auth, $location, $http) {  
   if (!$auth.isAuthenticated())
     return $location.path("/login")
 

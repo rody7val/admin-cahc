@@ -3,7 +3,7 @@
 	<ol class='breadcrumb'>
 		<div class='container'>
 			<li class='breadcrumb-item'>
-				<a class='breadcrumb-link' href="/">Home</a>
+				<a class='breadcrumb-link' href="/">Admin</a>
 			</li>
 			<li class='breadcrumb-item active'>Listado de Noticias</li>
 			<div id='time' class='right date'></div>
@@ -47,10 +47,10 @@
 					<td class='date'>{{setDate(notice.created)}}</td>
 					<td>{{notice.title}}</td>
 					<td>
-						<button
-							class='disabled btn btn-outline-info btn-sm'
-							href="#">
-							Ver</button>
+						<a
+							class='btn btn-outline-info btn-sm'
+							href="/notice/{{notice._id}}">
+							Ver</a>
 						<button
 							class='disabled btn btn-outline-warning btn-sm'
 							href="#">

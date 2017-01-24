@@ -16,7 +16,8 @@ section#img-load-content{
 	font-weight: 300;
 	font-size: 18px!important;
 }
-.breadcrumb .date:first-letter{
+.breadcrumb .date:first-letter,
+.notice-show .date:first-letter{
 	text-transform: capitalize;
 }
 img#img-load{
@@ -70,11 +71,12 @@ label {
     display: inline-block;
     margin-bottom: .5rem;
 }
-/*.body-form label{
-	display: block;
-}*/
-td form {
+.notice-show form, td form {
 	display: inline-block;
+}
+.notice-show img {
+    max-height: 400px;
+    margin-bottom: 25px;
 }
 .progress {
     display: -webkit-box;
@@ -108,6 +110,7 @@ td form {
 /**/
 .center{
 	text-align: center;
+    margin: 0 auto;
 }
 .right{
 	float: right;

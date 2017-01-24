@@ -3,9 +3,9 @@
 	<ol class='breadcrumb'>
 		<div class='container'>
 			<li class='breadcrumb-item'>
-				<a class='breadcrumb-link' href="/">Home</a>
+				<a class='breadcrumb-link' href="/">Admin</a>
 			</li>
-			<li class='breadcrumb-item active'>Iniciar Sesión</li>
+			<li class='breadcrumb-item active'>Registrarse</li>
 			<div id='time' class='right date'></div>
 		</div>
 	</ol>
@@ -22,12 +22,12 @@
 	
 	<!-- Titulo -->
 	<div class='head-title'>
-		<h1 class='center light'>Iniciar sesión</h1>
+		<h1 class='center light'>Registrarse</h1>
 	</div>
 	
 	<!-- Formulario -->
 	<div class='container body-form auth-form'>
-		<form ng-submit="login.login()" method="post">
+		<form ng-submit="signup.signup()" method="post">
 				
 				<!-- Errors -->
 				<div ng-show='feedback_err' class='alert alert-danger'>
@@ -43,7 +43,7 @@
 		    	<input
 		    		id='email'
 		    		type="email"
-		    		ng-model="login.email"
+		    		ng-model="signup.email"
 		    		class='form-control' />
 		    	<div 
 		    		id="email-feedback"
@@ -59,7 +59,7 @@
 		    	<input
 		    		id='password'
 		    		type="password"
-		    		ng-model="login.password"
+		    		ng-model="signup.password"
 		    		class='form-control' />
 		    	<div 
 		    		id="password-feedback"
@@ -67,7 +67,7 @@
 				</div>
 	
 				<!-- Boton de acceso -->
-		    <button type="submit" class='btn btn-outline-primary {{loading ? "disabled" : ""}}'>Autenticarse</button>
+		    <button type="submit" class='btn btn-outline-primary {{loading ? "disabled" : ""}}'>Registrarse</button>
 	
 		</form>
 	</div>
