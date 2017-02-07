@@ -21,6 +21,7 @@ Administración - Club Atletico Huracan Chillar
 git clone https://github.com/rody7val/admin-cahc
 cd stock-control
 npm install
+npm run build
 npm run dev
 ```
 Ir a [http://localhost:3000](http://localhost:3000) :tada:
