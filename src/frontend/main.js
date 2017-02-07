@@ -1,5 +1,7 @@
 require.config({
 
+    waitSeconds : 30,
+
     paths: {
         'domReady': '/js/lib/requirejs-domready/domReady',
         'angular': '/js/lib/angular/angular',
