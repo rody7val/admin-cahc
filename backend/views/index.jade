@@ -1,0 +1,7 @@
+extends ./layout.jade
+
+block content
+	section(ui-view)
+
+block js_footer
+	script(type="text/javascript", src='/js/lib/requirejs/require.js', data-main='/js/app/main.js')

@@ -1,43 +1,18 @@
-var config = require('./config'),
-  bower_dir = config.bower_dir,
-  dist_dir = config.dist_dir,
-  src_dir = config.src_dir;
+var config = require('./config');
 
 module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    uglify: {
-      dist: {
-        files: {
-          'dist/js/libs.js': [ 
-          	bower_dir + 'jquery/jquery.js',
-            bower_dir + 'tether/tether.js',
-            bower_dir + 'bootstrap/bootstrap.js',
-          ],
-          'dist/js/moment.js': [
-            bower_dir + 'moment/moment.js',
-            src_dir + 'moment-with-locales.js'
-          ],
-          'dist/js/app.js': [ 
-          	bower_dir + 'angular/angular.js',
-          	bower_dir + 'angular-ui-router/angular-ui-router.js',
-          	bower_dir + 'angular-imgur-upload/angular-imgur-upload.min.js',
-          	bower_dir + 'satellizer/satellizer.js',
-            src_dir + 'templates.js',
-          	src_dir + 'app.js',
-            src_dir + 'time.js'
-          ]
-        },
-        options: {
-          mangle: false
-        }
-      }
-    },
-
-    jshint: {
-      all: [ 'Gruntfile.js', 'config.js', 'bin/**/*', 'app/**/*.js', 'src/**/*.js' ]
+    copy: {
+      main: {
+        files:[
+          {expand: true, cwd: 'src/img', src: ['**'], dest: 'dist/img'},
+          {expand: true, cwd: 'src/css', src: ['**'], dest: 'dist/css'},
+          {expand: true, cwd: 'src/frontend', src: ['**', '!**/templates/**'], dest: 'dist/js/app'}
+        ]
+      },
     },
 
     html2js: {
@@ -57,8 +32,8 @@ module.exports = function(grunt) {
         }
       },
       main: {
-        src: [ src_dir + 'templates/**/*.html' ],
-        dest: src_dir + 'templates.js'
+        src: [ 'src/templates/**/*.html' ],
+        dest: 'src/templates.js'
       }
     },
 
@@ -67,8 +42,8 @@ module.exports = function(grunt) {
         livereload: true
       },
       express: {
-        files: [ '*.js', 'app/**/*', 'bin/**/*', 'src/**/*' ],
-        tasks: [ 'html2js', 'jshint', 'uglify' ],
+        files: [ '*.js', 'backend/**/*', 'bin/**/*', 'src/**/*' ],
+        tasks: [ 'html2js', 'copy' ],
         options: {
           atBegin: true,
           spawn: false
@@ -88,7 +63,7 @@ module.exports = function(grunt) {
     bower: {
       install: {
         options: {
-          targetDir: './lib',
+          targetDir: 'dist/js/lib',
           cleanTargetDir: true,
           cleanBowerDir: true,
           install: true,
@@ -100,13 +75,12 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-bower-task');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-express-server');
 
-  grunt.registerTask('build-prod', [ 'bower', 'html2js', 'uglify' ]);
+  grunt.registerTask('build-prod', [ 'bower', 'html2js', 'copy' ]);
   grunt.registerTask('build-dev', [ 'bower' ]);
-  grunt.registerTask('dev', [ 'express:dev', 'watch' ]);
+  grunt.registerTask('dev', [ 'copy', 'express:dev', 'watch' ]);
 };
