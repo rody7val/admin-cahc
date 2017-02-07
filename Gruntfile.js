@@ -32,7 +32,7 @@ module.exports = function(grunt) {
         }
       },
       main: {
-        src: [ 'src/templates/**/*.html' ],
+        src: [ 'src/frontend/templates/**/*.html' ],
         dest: 'src/templates.js'
       }
     },
