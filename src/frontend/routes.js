@@ -16,19 +16,19 @@ define(['./app'], function (app) {
       $stateProvider
       .state("home", {
         url: "/",
-        templateUrl: "templates/index.html",
+        templateUrl: "frontend/templates/index.html",
         controller: "Home"
       })
       //session
       .state("login", {
         url: "/login",
-        templateUrl: "templates/session/login.html",
+        templateUrl: "frontend/templates/session/login.html",
         controller: "Login",
         controllerAs: "login"
       })
       .state("signup", {
         url: "/signup",
-        templateUrl: "templates/session/signup.html",
+        templateUrl: "frontend/templates/session/signup.html",
         controller: "Signup",
         controllerAs: "signup"
       })
@@ -40,26 +40,26 @@ define(['./app'], function (app) {
       //notice
       .state("notice", {
         url: "/notice",
-        templateUrl: "templates/notice/new.html",
+        templateUrl: "frontend/templates/notice/new.html",
         controller: "NoticeNew",
         controllerAs: "notice"
       })
       .state("notices", {
         url: "/notices",
-        templateUrl: "templates/notice/list.html",
+        templateUrl: "frontend/templates/notice/list.html",
         controller: "NoticeList",
         controllerAs: "notices"
       })
       .state("notice_show", {
         url: "/notice/:id",
-        templateUrl: "templates/notice/show.html",
+        templateUrl: "frontend/templates/notice/show.html",
         controller: "NoticeShow",
         controllerAs: "notice"
       })
       //default
       .state("otherwise", {
         url: "/*path",
-        templateUrl: "templates/404.html"
+        templateUrl: "frontend/templates/404.html"
       });
 
     }]);
