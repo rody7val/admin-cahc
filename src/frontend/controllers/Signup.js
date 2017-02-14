@@ -7,6 +7,7 @@ define(['./module'], function (controllers) {
   
     var vm = this;
     $scope.loading = false;
+    $scope.feedback_name = '';
     $scope.feedback_email = '';
     $scope.feedback_password = '';
     $scope.feedback_err = '';
@@ -15,6 +16,7 @@ define(['./module'], function (controllers) {
       $scope.loading = true;
   
       $auth.signup({
+        name: vm.name,
         email: vm.email,
         password: vm.password
       })
@@ -22,34 +24,37 @@ define(['./module'], function (controllers) {
         var api = res.data;
   
         if (res.status === 200) {
-          $auth.login({ email: vm.email, password: vm.password })
+          $auth.login({ name: vm.name, email: vm.email, password: vm.password })
           .then(function(){
             $scope.loading = false;
+            localStorage.setItem('user', JSON.stringify(api.user));
             return $location.path("/");
           });
         }
       })
       .catch(function(res) {
         $scope.loading = false;
+        $scope.feedback_name = '';
         $scope.feedback_email = '';
         $scope.feedback_password = '';
         $scope.feedback_err = '';
         var api = res.data;
-  
-        if (res.status === 500 && api.err && api.err.email) {
+
+        if (res.status != 500) {
+          $scope.feedback_err = "Error de servicio! Contácte al administrdor del sistema.";
+          console.log(api.err);
+          return;
+        }
+
+        if (res.status === 500 && api.err && api.err.name)
+          $scope.feedback_name = api.err.name.message;
+
+        if (res.status === 500 && api.err && api.err.email)
           $scope.feedback_email = api.err.email.message;
-          return;
-        }
-        else if (res.status === 500 && api.err && api.err.password) {
-          $scope.feedback_password = api.err.password.message;
-          return;
-        }
-        else if (res.status === 406) {
-          $scope.feedback_err = api.err;
-          return;
-        }
+
+        if (res.status === 500 && api.err && api.err.password)
+          $scope.feedback_password = api.err.password.message;        
   
-        $scope.feedback_err = "Error de servicio! Contácte al administrdor del sistema.";
       });
     };
   }]);

@@ -4,7 +4,7 @@ define(['./module'], function (controllers) {
   controllers.controller('Login', ['$scope', '$auth', '$location', function ($scope, $auth, $location) {
     if ($auth.isAuthenticated())
       return $location.path("/");
-  
+
     var vm = this;
     $scope.loading = false;
     $scope.feedback_email = '';
@@ -22,10 +22,13 @@ define(['./module'], function (controllers) {
         password: vm.password
       })
       .then(function(res){
-        $scope.loading = false;
         var api = res.data;
   
-        if (res.status === 200) return $location.path("/");
+        if (res.status === 200) {
+          $scope.loading = false;
+          localStorage.setItem('user', JSON.stringify(api.user))
+          return $location.path("/");
+        }
       })
       .catch(function(res){
         $scope.loading = false;

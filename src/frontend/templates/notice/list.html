@@ -37,6 +37,7 @@
 			<thead>
 				<tr>
 					<th>Fecha</th>
+					<th>Autor</th>
 					<th>Titulo</th>
 					<th>Acciones</th>
 				</tr>
@@ -44,20 +45,17 @@
 			<tbody>
 				<tr ng-if='notices.length' ng-repeat='notice in notices'>
 					<td class='date'>{{setDate(notice.created)}}</td>
+					<td class='date'>{{notice.autor}}</td>
 					<td>{{notice.title}}</td>
 					<td>
-						<a
-							class='btn btn-outline-info btn-sm'
+						<a  class='btn btn-outline-info btn-sm'
 							href="/notice/{{notice._id}}">
 							Ver</a>
-						<button
-							class='disabled btn btn-outline-warning btn-sm'
-							href="#">
-							Editar</button>
-						<form>
+						<form ng-if='userLoged.active' ng-submit="this.delete(notice._id)" method='get'>
 							<input
-								class='disabled btn btn-outline-danger btn-sm'
+								class='btn btn-outline-danger btn-sm'
 								type='submit'
+								onClick='return confirm("BORRAR NOTICIA?")'
 								value='Borrar'>
 						</form>
 					</td>

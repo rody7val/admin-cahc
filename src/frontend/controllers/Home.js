@@ -5,5 +5,6 @@ define(['./module'], function (controllers) {
 	  if (!$auth.isAuthenticated())
 	    return $location.path("/login");
 	  $scope.currentPage = 1;
+	  $scope.userLoged = JSON.parse(localStorage.getItem('user'));
 	}]);
 });

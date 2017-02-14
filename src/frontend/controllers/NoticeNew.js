@@ -5,7 +5,10 @@ define(['./module'], function (controllers) {
     if (!$auth.isAuthenticated())
       return $location.path("/login");
   
+    $scope.userLoged = JSON.parse(localStorage.getItem('user'));
     var vm = this;
+    vm.autor = $scope.userLoged.name;
+    
     $scope.loading = false;
     $scope.feedback_title = '';
     $scope.feedback_content_1 = '';
@@ -17,6 +20,7 @@ define(['./module'], function (controllers) {
     $scope.img_err = "Error de servicio! Contácte al administrdor del sistema.";
   
     $scope.uploadProgress = 0;
+    
     $scope.upload = function(element) {
       var success = function(result) {
         $scope.loading = false;
@@ -61,7 +65,8 @@ define(['./module'], function (controllers) {
           content_2: vm.content_2 || '',
           category: vm.category || '',
           url_img: vm.url_img || '',
-          status: vm.status || false
+          status: vm.status || false,
+          autor: vm.autor
         }
       })
       .then(function(res){
@@ -86,7 +91,8 @@ define(['./module'], function (controllers) {
           vm.category = '';
           vm.status = '';
           vm.url_img = '';
-          alert('Noticia creada con exito!');
+          vm.autor = '';
+          alert('NOTICIA CREADA CON EXITO!');
         }
       })
       .catch(function(res){

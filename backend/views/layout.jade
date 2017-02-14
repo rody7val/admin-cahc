@@ -28,8 +28,18 @@ html(lang='es')
 					li.nav-item
 						a.nav-link(href='/signup', title='Registrarse') Registrarse
 				ul.nav.navbar-nav.right(ng-if='isAuthenticated()')
-					li.nav-item
-						a.nav-link(href='/logout', title='Salir') Salir
+					li.nav-item.dropdown
+						#userMenu.nav-link.dropdown-toggle(
+							title='{{getName()}}'
+							data-toggle="dropdown"
+							aria-haspopup="true"
+							aria-expanded="true"
+						) {{getName()}}
+						.dropdown-menu(aria-labelledby='userMenu')
+							a.dropdown-item(
+								href='http://www.clubhuracanchillar.com.ar'
+								target='_blank') Ir al sitio web
+							a.dropdown-item(href='/logout', title='Salir') Salir
 		//- Contenido principal
 		section#main
 			block content
@@ -40,6 +50,6 @@ html(lang='es')
 				p.center.date 
 					small Sistema de Administración Web
 				p.center.date
-					small  © 2017 - v1.5.0
+					small  © 2017 - v1.6.0
 		//- Scripts
 		block js_footer

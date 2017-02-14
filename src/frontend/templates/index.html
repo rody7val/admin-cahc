@@ -46,7 +46,7 @@
 			<!-- Paneles-->
 			<div class='tab-content'>
 				<!-- Noticias -->
-				<div class='tab-pane {{currentPage == 1 ? "active" : ""}}' id='notice'>
+				<div class='tab-pane fade {{currentPage == 1 ? "active in" : ""}}' id='notice'>
 					<div class='list-group'>
 						<a 
 							href="/notice"
@@ -54,7 +54,7 @@
 							<div class="d-flex w-100 justify-content-between">
 								<h5 class='mb-1'>Crear noticia</h5>
 							</div>
-							<p class='mb-1'>Muestra un formlario para crear una nueva Noticia y almacenarla en la Base de Datos.</p>
+							<p class='mb-1'>Muestra formlario para Crear Nueva Noticia.</p>
 						</a>
 						<a 
 							href="/notices"
@@ -62,28 +62,20 @@
 							<div class="d-flex w-100 justify-content-between">
 								<h5 class='mb-1'>Listado de noticias</h5>
 							</div>
-							<p class='mb-1'>Muestra un listado de todas las Noticias guardadas. Tambien es posible editarlas y borrarlas.</p>
+							<p class='mb-1'>Muestra listado de todas las Noticias.</p>
 						</a>
 					</div>
 				</div>
 				<!-- Usuarios -->
-				<div class='tab-pane {{currentPage == 2 ? "active" : ""}}' id='user'>
+				<div class='tab-pane fade {{currentPage == 2 ? "active in" : ""}}' id='user'>
 					<div class='list-group'>
 						<a 
-							href="/user"
-							class="list-group-item list-group-item-action flex-column align-items-start disabled">
-							<div class="d-flex w-100 justify-content-between">
-								<h5 class='mb-1'>Crear usuario</h5>
-							</div>
-							<p class='mb-1'>Muestra un formulario para crear un nuevo Usuario y almacenarlo en la Base de Datos.</p>
-						</a>
-						<a 
 							href="/users"
-							class="list-group-item list-group-item-action flex-column align-items-start disabled">
+							class="list-group-item list-group-item-action flex-column align-items-start">
 							<div class="d-flex w-100 justify-content-between">
 								<h5 class='mb-1'>Listado de usuarios</h5>
 							</div>
-							<p class='mb-1'>Muestra un listado de todos los Usuarios guardados. Tambien es posible editarlos y borrarlos.</p>
+							<p class='mb-1'>Muestra un listado de todos los Usuarios.</p>
 						</a>
 					</div>
 				</div>

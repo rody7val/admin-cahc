@@ -1,0 +1,81 @@
+<!-- Navegación, fecha y hora-->
+<div id='subnav'>
+	<ol class='breadcrumb'>
+		<div class='container'>
+			<li class='breadcrumb-item'>
+				<a class='breadcrumb-link' href="/">Admin</a>
+			</li>
+			<li class='breadcrumb-item active'>Listado de usuarios</li>
+			<div id='time' class='right date'></div>
+		</div>
+	</ol>
+</div>
+
+<!-- Plantilla -->
+<section id='template-content' class='{{loading ? "load" : ""}}'>
+
+	<!-- Imagen de carga -->
+	<section id='img-load-content' class='{{loading ? "view" : ""}}'>
+		<img id='img-load' src='img/img-load.gif' alt='img-load.gif'>
+	</section>
+	
+	<!-- Titulo -->
+	<div class='head-title'>
+		<h1 class='center light'>Listado de usuarios</h1>
+	</div>
+	
+
+	<!-- Listado de Noticias -->
+	<div class='container body-form'>
+
+		<!-- Errors -->
+		<div ng-show='feedback_err' class='alert alert-danger'>
+			{{feedback_err}}
+		</div>
+		<table class='table table-hover'>
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Email</th>
+					<th>Estado</th>
+					<th ng-if='userLoged.active'>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-if='users.length' ng-repeat='user in users'>
+					<td class='date'>{{user.name}}</td>
+					<td>{{user.email}}</td>
+					<td class="{{user.active == false ? 'alert-danger' : 'alert-success'}}">
+						{{user.active == false ? 'Pendiente' : 'Activo'}}
+					</td>
+					<td ng-if='userLoged.active && user._id != userLoged._id'>
+						<form ng-submit="this.delete(user._id)" method='get'>
+							<input
+								class='btn btn-outline-danger btn-sm'
+								type='submit'
+								onClick='return confirm("BORRAR USUARIO?")'
+								value='Borrar'>
+						</form>
+						<form ng-if='!user.active' ng-submit="this.activate(user._id)" method='get'>
+							<input
+								class='btn btn-outline-success btn-sm'
+								type='submit'
+								value='Activar'>
+						</form>
+						<form ng-if='user.active && user._id != userLoged._id' ng-submit="this.block(user._id)" method='get'>
+							<input
+								class='btn btn-outline-warning btn-sm'
+								type='submit'
+								value='Bloquear'>
+						</form>
+					</td>
+				</tr>
+				<tr ng-if='!users.length'>
+					<td colspan='4' class='center'>No hay usuarios ...</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+</section>

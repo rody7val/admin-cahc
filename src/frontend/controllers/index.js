@@ -1,5 +1,6 @@
 define([
     './Home',
+    './UserList',
     './NoticeList',
     './NoticeNew',
     './NoticeShow',

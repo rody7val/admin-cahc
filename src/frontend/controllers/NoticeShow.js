@@ -8,6 +8,7 @@ define(['./module'], function (controllers) {
     $scope.id = $stateParams.id;
     $scope.loading = false;
     $scope.feedback_err = '';
+    $scope.userLoged = JSON.parse(localStorage.getItem('user'));
   
     this.getOne = function() {
       $scope.loading = true;
@@ -22,14 +23,8 @@ define(['./module'], function (controllers) {
           $scope.notice = api.notice;
       })
       .catch(function(res){
-        if (!res.data)
-          $scope.feedback_err = "Error de servicio! Contácte al administrdor del sistema.";
-  
-        var api = res.data;
-        if (res.status === 500 && api.err)
-          $scope.feedback_err = api.err;
-  
         $scope.loading = false;
+        $scope.feedback_err = "Error de servicio! Contácte al administrdor del sistema.";
       });
     };
   
@@ -38,5 +33,33 @@ define(['./module'], function (controllers) {
     };
   
     this.getOne();
+
+    $scope.delete = function(id) {
+      $scope.loading = true;
+  
+      $http.get('https://api-cahc.herokuapp.com/notices/'+id+'/delete')
+      .then(function(res){
+        $scope.loading = false;
+        $scope.feedback_err = '';
+        var api = res.data;
+  
+        if (res.status === 200) {
+          return $location.path("/notices");
+        }
+      })
+      .catch(function(res){
+        if (!res.data){
+          $scope.loading = false;
+          $scope.feedback_err = "Error de servicio! Contácte al administrdor del sistema.";
+        }
+  
+        var api = res.data;
+        $scope.loading = false;
+        $scope.feedback_err = '';
+  
+        if (res.status === 500 && api.err)
+          $scope.feedback_err = api.err
+      });
+    }
   }]);
 });

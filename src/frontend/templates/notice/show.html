@@ -59,14 +59,11 @@
 				<a
 					class='btn btn-link'
 					href="/notices">Volver</a>
-				<button
-					class='disabled btn btn-outline-warning'
-					href="#">
-					Editar</button>
-				<form>
+				<form ng-if='userLoged.active' ng-submit="this.delete(notice._id)" method='get'>
 					<input
-						class='disabled btn btn-outline-danger'
+						class='btn btn-outline-danger'
 						type='submit'
+						onClick='return confirm("BORRAR NOTICIA?")'
 						value='Borrar'>
 				</form>
 			</div>

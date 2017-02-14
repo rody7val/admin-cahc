@@ -7,7 +7,8 @@ define(['./module'], function (controllers) {
 	
 	  $auth.logout()
 	    .then(function() {
-	      $location.path("/login");
+	    	localStorage.removeItem('user')
+	    	$location.path("/login");
 	    });
 	}]);
 });

@@ -56,6 +56,13 @@ define(['./app'], function (app) {
         controller: "NoticeShow",
         controllerAs: "notice"
       })
+      //user
+      .state('users', {
+        url: '/users',
+        templateUrl: 'frontend/templates/user/list.html',
+        controller: 'UserList',
+        controllerAs: 'users'
+      })
       //default
       .state("otherwise", {
         url: "/*path",

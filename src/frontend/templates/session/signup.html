@@ -30,20 +30,36 @@
 					{{feedback_err}}
 				</div>
 
+				<!-- Nombre -->
+				<div class='form-group {{feedback_name ? "has-danger" : ""}}'>
+					<label 
+						class='form-control-label'
+						for='name'>
+							<b>Nombre Completo</b></label>
+		    		<input
+		    			id='name'
+		    			type="name"
+		    			ng-model="signup.name"
+		    			class='form-control' />
+		    		<div 
+		    			id="name-feedback"
+		    			class='form-control-feedback'>{{feedback_name}}</div>
+		    	</div>
+
 				<!-- Email -->
 				<div class='form-group {{feedback_email ? "has-danger" : ""}}'>
 					<label 
 						class='form-control-label'
 						for='email'>
 							<b>Email</b></label>
-		    	<input
-		    		id='email'
-		    		type="email"
-		    		ng-model="signup.email"
-		    		class='form-control' />
-		    	<div 
-		    		id="email-feedback"
-		    		class='form-control-feedback'>{{feedback_email}}</div>
+		    		<input
+		    			id='email'
+		    			type="email"
+		    			ng-model="signup.email"
+		    			class='form-control' />
+		    		<div 
+		    			id="email-feedback"
+		    			class='form-control-feedback'>{{feedback_email}}</div>
 				</div>
 	
 				<!-- Contraseña -->
