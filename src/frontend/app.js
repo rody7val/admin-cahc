@@ -4,7 +4,7 @@ define([
     'satellizer',
     'imgurUpload',
     'app-cahc.templates',
-    './controllers/index'
+    './controllers/index',
 ], function (angular) {
     'use strict';
 
@@ -13,6 +13,6 @@ define([
         'satellizer',
         'imgurUpload',
         'app-cahc.templates',
-        'app.controllers'
+        'app.controllers',
     ]);
 });

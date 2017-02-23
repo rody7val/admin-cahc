@@ -1,0 +1,60 @@
+<!-- Navegación, fecha y hora-->
+<div id='subnav'>
+	<ol class='breadcrumb'>
+		<div class='container'>
+			<li class='breadcrumb-item active'>Forgot</li>
+			<div id='time' class='right date'></div>
+		</div>
+	</ol>
+</div>
+
+<!-- Plantilla -->
+<section id='template-content' class='{{loading ? "load" : ""}}'>
+
+	<!-- Imagen de carga -->
+	<section id='img-load-content' class='{{loading ? "view" : ""}}'>
+		<img id='img-load' src='img/img-load.gif' alt='img-load.gif'>
+	</section>
+	
+	<!-- Titulo -->
+	<div class='head-title'>
+		<h1 class='center light'>Recuperar Contraseña</h1>
+	</div>
+	
+	<!-- Formulario -->
+	<div class='container body-form auth-form'>
+		<form ng-submit="forgot.forgot()" method="post">
+				
+				<!-- Errors -->
+				<div ng-show='feedback_err' class='alert alert-danger'>
+					{{feedback_err}}
+				</div>
+				<!-- Success -->
+				<div ng-show='feedback_success' class='alert alert-success'>
+					{{feedback_success}}
+				</div>
+
+				<!-- Email -->
+				<div class='form-group {{feedback_email ? "has-danger" : ""}}'>
+					<label 
+						class='form-control-label'
+						for='email'>
+							<b>Ingresa tu Email</b></label>
+		    	<input
+		    		id='email'
+		    		type="email"
+		    		ng-model="forgot.email"
+		    		class='form-control' />
+		    	<div 
+		    		id="email-feedback"
+		    		class='form-control-feedback'>{{feedback_email}}</div>
+				</div>
+	
+			<!-- Boton de acceso -->
+		    <button type="submit" class='btn btn-outline-primary {{loading ? "disabled" : ""}}'>Recuperar Contraseña</button>
+	    	<a class='btn btn-link right' href="/login">Volver</a>
+	
+		</form>
+	</div>
+
+</section>

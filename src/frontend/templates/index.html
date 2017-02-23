@@ -15,15 +15,28 @@
 	<section id='img-load-content' class='{{loading ? "view" : ""}}'>
 		<img id='img-load' src='img/img-load.gif' alt='img-load.gif'>
 	</section>
-	
-	<!-- Titulo -->
+
 	<div class='head-title'>
+		<div class='notifications container center'>
+			<!-- Errors -->
+			<div ng-show='feedback_err' class='alert alert-danger'>
+				{{feedback_err}}
+				<script>(function(e){function animation(element){setTimeout(function(){element.animate({height:'0px'},'slow');e.empty()},5000)}animation(e)})($('.notifications'))</script>
+			</div>
+			<!-- Success -->
+			<div ng-show='feedback_success' class='alert alert-success'>
+				{{feedback_success}}
+				<script>(function(e){function animation(element){setTimeout(function(){element.animate({height:'0px'},'slow');e.empty()},5000)}animation(e)})($('.notifications'))</script>
+			</div>
+		</div>
+
+		<!-- Titulo -->
 		<h1 class='center light'>Administración</h1>
 	</div>
 
 	<div class='container body-form'>
-		<nav>
 
+		<nav>
 			<!-- Navegación de administración -->
 			<ul class='nav nav-tabs'>
 				<li class='nav-item'>
@@ -80,7 +93,6 @@
 					</div>
 				</div>
 			</div>
-
 		</nav>
 
 	</div>

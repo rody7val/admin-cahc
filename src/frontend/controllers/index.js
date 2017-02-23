@@ -6,6 +6,8 @@ define([
     './NoticeShow',
     './IsAuthenticated',
     './Login',
+    './Forgot',
+    './Reset',
     './Logout',
     './Signup'
 ], function () {});

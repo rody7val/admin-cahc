@@ -1,0 +1,78 @@
+<!-- Navegación, fecha y hora-->
+<div id='subnav'>
+	<ol class='breadcrumb'>
+		<div class='container'>
+			<li class='breadcrumb-item active'>Reset</li>
+			<div id='time' class='right date'></div>
+		</div>
+	</ol>
+</div>
+
+<!-- Plantilla -->
+<section id='template-content' class='{{loading ? "load" : ""}}'>
+
+	<!-- Imagen de carga -->
+	<section id='img-load-content' class='{{loading ? "view" : ""}}'>
+		<img id='img-load' src='img/img-load.gif' alt='img-load.gif'>
+	</section>
+	
+	<!-- Titulo -->
+	<div class='head-title'>
+		<h1 class='center light'>Restablecer Contraseña</h1>
+	</div>
+	
+	<!-- Formulario -->
+	<div class='container body-form auth-form'>
+		<form ng-submit="reset.reset()" method="post">
+		  <fieldset>
+			<!-- Errors -->
+			<div ng-show='feedback_err' class='alert alert-danger'>
+				{{feedback_err}}
+			</div>
+
+			<!-- Success -->
+			<div ng-show='feedback_success' class='alert alert-success'>
+				{{feedback_success}}
+			</div>
+
+			<!-- Contraseña -->
+			<div class='form-group {{feedback_password ? "has-danger" : ""}}'>
+		    <label 
+		    	class='form-control-label'
+		    	for='password'>
+		    		<b>Nueva Contraseña</b></label>
+		    <input
+		    	id='password'
+		    	type="password"
+		    	ng-model="reset.password"
+		    	required
+		    	class='form-control' />
+<!-- 		    <div 
+		    	id="password-feedback"
+		    	class='form-control-feedback'>{{feedback_password}}</div> -->
+			</div>
+
+			<!-- Repetir Contraseña -->
+			<div class='form-group {{feedback_password_bis ? "has-danger" : ""}}'>
+		    <label 
+		    	class='form-control-label'
+		    	for='password'>
+		    		<b>Repetir Contraseña</b></label>
+		    <input
+		    	id='password-bis'
+		    	type="password"
+		    	ng-model="reset.password_bis"
+		    	required
+		    	class='form-control' />
+<!-- 		    <div 
+		    	id="password-feedback"
+		    	class='form-control-feedback'>{{feedback_password_bis}}</div> -->
+			</div>
+
+			<!-- Boton de acceso -->
+		    <button type="submit" class='btn btn-outline-primary {{loading ? "disabled" : ""}}'>Actualizar Contraseña</button>
+		  </fieldset>
+		</form>
+	</div>
+
+</section>

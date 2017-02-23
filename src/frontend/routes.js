@@ -26,6 +26,18 @@ define(['./app'], function (app) {
         controller: "Login",
         controllerAs: "login"
       })
+      .state("forgot", {
+        url: "/forgot",
+        templateUrl: "frontend/templates/session/forgot.html",
+        controller: "Forgot",
+        controllerAs: "forgot"
+      })
+      .state("reset", {
+        url: "/reset/:token",
+        templateUrl: "frontend/templates/session/reset.html",
+        controller: "Reset",
+        controllerAs: "reset"
+      })
       .state("signup", {
         url: "/signup",
         templateUrl: "frontend/templates/session/signup.html",
